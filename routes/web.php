@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,10 @@ Route::get('/home', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');
 Route::get('/logout', [LoginController::class, 'destroy']);
+
+Route::get('/books/testing', [BookController::class, 'index']);
+Route::get('/books/add', function (){
+    return view('books.create');
+});
+
+Route::get('admin/home', [AdminController::class, 'index']);

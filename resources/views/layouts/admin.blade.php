@@ -24,7 +24,7 @@
                 <li>Create Report</li>
                 <li>Create New Guide</li>
                 <li>Create New Tag</li>
-                <li>Modify Books</li>
+                <li><a href="/books/">Modify Books</a></li>
                 <li>Modify Authors</li>
             </ul>
             <hr class="menu-separator">
@@ -46,10 +46,10 @@
                 <li>Modify Authors</li>
             </ul>
             <hr class="menu-separator">
-            <li>Books</li>
+            <li><a href="/books/">Books</a></li>
             <ul class="menu-list">
-                <li>Add new book</li>
-                <li>Modify book templates</li>
+                <li><a href="/books/add">Add New Book</a></li>
+                <li><a href="/books/">Modify Books</a></li>
             </ul>
             <hr class="menu-separator">
             <li>Stock</li>

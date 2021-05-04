@@ -111,4 +111,22 @@ class BookController extends Controller
         return redirect('/books/add')->withErrors(['Book Added Successfully']);
 
     }
+
+    public function updateBook($id) {
+        $book = Book::find($id);
+
+        return view('books.update')->with(['book' => $book]);
+    }
+
+    public function update($id, Request $request) {
+        $book = Book::find($id);
+
+        $book->title = $request->title;
+        $book->blurb = $request->blurb;
+        $book->img = $request->img;
+
+        $book->save();
+
+        return back()->withErrors(['Book Updated Successfully']);
+    }
 }

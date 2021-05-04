@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
 
-	public function index()
+    public function __construct()
+    {
+        $this->middleware('auth')->only('logout');
+    }
+
+    public function index()
 	{
 		return view('users.login');
 	}
 
-	public function create(Request $request) 
+	public function create(Request $request)
 	{
 
 		$validated = $request->validate([
@@ -29,9 +34,10 @@ class LoginController extends Controller
 			$request->session()->regenerate();
 
 			return redirect()->intended('home');
-		}
+		} else {
+		    return back()->withErrors(["Authentication Failed"]);
+        }
 
-		return back()->withErrors;
 
 	}
 

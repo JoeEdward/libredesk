@@ -16,7 +16,7 @@
 <body>
 @include('layouts.navbar')
 <div class="row" style="margin-top: 4%;">
-    <div class="col-md-3 container sidebar-admin">
+    <div class="col-md-3 container sidebar-admin" style="overflow: scroll">
         <ul class="menu-list" style="margin-top: 3%">
             <li>Menu</li>
             <ul class="menu-list">
@@ -28,10 +28,10 @@
                 <li>Modify Authors</li>
             </ul>
             <hr class="menu-separator">
-            <li>Users</li>
+            <li><a href="/admin/users/index">Users</a></li>
             <ul class="menu-list">
-                <li>Add Users</li>
-                <li>Modify Users</li>
+                <li><a href="/admin/users/add">Add Users</a></li>
+                <li><a href="/admin/users/index">Modify Users</a></li>
             </ul>
             <hr class="menu-separator">
             <li>Content</li>
@@ -39,7 +39,26 @@
                 <li>Guides</li>
                 <li>Tags</li>
             </ul>
+            <hr class="menu-separator">
+            <li>Authors</li>
+            <ul class="menu-list">
+                <li>Add new author</li>
+                <li>Modify Authors</li>
+            </ul>
+            <hr class="menu-separator">
+            <li>Books</li>
+            <ul class="menu-list">
+                <li>Add new book</li>
+                <li>Modify book templates</li>
+            </ul>
+            <hr class="menu-separator">
+            <li>Stock</li>
+            <ul class="menu-list">
+                <li>Stock checker</li>
+                <li>Modify stock</li>
+            </ul>
         </ul>
+        <br>
     </div>
     <div class="col-md-9 offset-3">
         @yield('content')

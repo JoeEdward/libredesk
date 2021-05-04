@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 @section('title', 'Add New Book')
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-primary" style="margin-top: 2rem">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 <div class="card" style="margin-right: 1rem; margin-top: 2rem">
     <div class="card-header">
         <h4>Add New Book (Automatic):</h4>
@@ -30,7 +39,8 @@
         </div>
         <div class="form-group">
             <input type="text"
-                   class="form-control" name="author" id="author" placeholder="Author">
+                   class="form-control" name="author" id="author" aria-describedby="helpId" placeholder="Author">
+                <small id="helpId" class="form-text text-muted">Please use format Surname, Firstname seperated by a colon</small>
         </div>
 
         <div class="form-group">

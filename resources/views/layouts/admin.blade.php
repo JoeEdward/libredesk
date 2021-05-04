@@ -25,7 +25,7 @@
                 <li>Create New Guide</li>
                 <li>Create New Tag</li>
                 <li><a href="/books/">Modify Books</a></li>
-                <li>Modify Authors</li>
+                <li><a href="/authors">Modify Authors</a></li>
             </ul>
             <hr class="menu-separator">
             <li><a href="/admin/users/index">Users</a></li>
@@ -40,10 +40,9 @@
                 <li>Tags</li>
             </ul>
             <hr class="menu-separator">
-            <li>Authors</li>
+            <li><a href="/authors">Authors</a></li>
             <ul class="menu-list">
-                <li>Add new author</li>
-                <li>Modify Authors</li>
+                <li><a href="/authors">Modify Authors</a></li>
             </ul>
             <hr class="menu-separator">
             <li><a href="/books/">Books</a></li>

@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use \App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::post('/books/add', [BookController::class, 'create'])->middleware('role')
 Route::post('/books/add/isbn', [BookController::class, 'quickCreate'])->middleware('role');
 Route::get('/books/update/{id}', [BookController::class, 'updateBook'])->middleware('role');
 Route::post('/books/update/{id}', [BookController::class, 'update'])->middleware('role');
+
+Route::get('/authors', [AuthorController::class, 'index'])->middleware('role');
+Route::get('/authors/{id}', [AuthorController::class, "updateAuthor"])->middleware('role');
+Route::post('/authors/{id}', [AuthorController::class, 'update'])->middleware('role');
 
 Route::get('admin/home', [AdminController::class, 'index'])->middleware('role');
 Route::get('/admin/users/index', [AdminController::class, 'userIndex'])->middleware('role');

@@ -51,5 +51,66 @@ class User extends Authenticatable
         } else {
             return "False";
         }
+
 }
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function loans() {
+        return $this->hasMany(Loan::class);
+    }
+
+    public function overDue() {
+        $loans = $this->loans;
+        $overdue = [];
+
+        foreach ($loans as $loan) {
+            if ($loan->created_at < now()) {
+                $overdue =+ $loan;
+            }
+        }
+
+        if (count($overdue) > 0) {
+            return $overdue;
+        } else {
+            return null;
+        }
+    }
+
+    public function userHasCurrentBook(book $book) {
+        $loans = $this->loans;
+        $has = false;
+
+
+        foreach($loans as $loan) {
+            if ($loan->book->id == $book->id) {
+                $has = true;
+            }
+        }
+
+        return $has;
+
+    }
+
+    public function getDueDate($book) {
+        $loans = $this->loans;
+        $found = new loan();
+        $due = new \DateTime();
+
+        foreach($loans as $loan) {
+            if ($loan->book->id == $book->id) {
+                $found = $loan;
+                $due = $found->created_at;
+                date_add($due,date_interval_create_from_date_string("14 days"));
+            }
+            else {
+                $found = null;
+            }
+        }
+        return ["pretty" => $due->format('l jS \\of F Y'),
+                "ugly" => $due
+            ];
+
+    }
 }

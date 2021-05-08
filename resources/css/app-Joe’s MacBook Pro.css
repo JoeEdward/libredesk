@@ -1,0 +1,16 @@
+.sidebar-admin {
+    background-color: #212529;
+    height: 43rem;
+    color: white;
+    position: fixed !important;
+
+}
+
+.menu-list {
+    list-style-type: none;
+}
+
+.menu-separator {
+    border-width: 5px;
+    background-color: white;
+}

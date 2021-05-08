@@ -129,4 +129,8 @@ class BookController extends Controller
 
         return back()->withErrors(['Book Updated Successfully']);
     }
+
+    public function userSelect(Book $book) {
+        return view('users.books.select')->with(["book" => $book]);
+    }
 }

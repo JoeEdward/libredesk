@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use \App\Http\Controllers\AuthorController;
+use \App\Http\Controllers\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,30 +24,53 @@ Route::get('/', function () {
 })->name('start');
 
 
-Route::get('/home', function () {
-	return view('users.homepage');
-})->name('home')->middleware('auth');
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');
-Route::get('/logout', [LoginController::class, 'destroy'])->middleware('auth');
 
-Route::get('/books/', [BookController::class, 'index']);
-Route::get('/books/add', function (){
-    return view('books.create');
-})->middleware('role');
-Route::post('/books/add', [BookController::class, 'create'])->middleware('role');
-Route::post('/books/add/isbn', [BookController::class, 'quickCreate'])->middleware('role');
-Route::get('/books/update/{id}', [BookController::class, 'updateBook'])->middleware('role');
-Route::post('/books/update/{id}', [BookController::class, 'update'])->middleware('role');
 
-Route::get('/authors', [AuthorController::class, 'index'])->middleware('role');
-Route::get('/authors/{id}', [AuthorController::class, "updateAuthor"])->middleware('role');
-Route::post('/authors/{id}', [AuthorController::class, 'update'])->middleware('role');
 
-Route::get('admin/home', [AdminController::class, 'index'])->middleware('role');
-Route::get('/admin/users/index', [AdminController::class, 'userIndex'])->middleware('role');
-Route::get('/admin/user/{id}', [UserController::class, 'userSelect'])->middleware('role');
-Route::post('/admin/user/{id}/', [UserController::class, 'userUpdate'])->middleware('role');
-Route::get('/admin/users/add', [UserController::class, 'userCreate'])->middleware('role');
-Route::post('/admin/users/add', [UserController::class, 'create'])->middleware('role');
+Route::middleware('auth')->group(function() {
+    Route::get('/logout', [LoginController::class, 'destroy']);
+    Route::get('/home', function () {
+
+        return view('users.homepage');
+    })->name('home');
+    Route::get('/user/book/{book}', [BookController::class, 'userSelect']);
+    Route::get('/user/loan/{book}', [\App\Http\Controllers\LoanController::class, 'create']);
+    Route::get('/user/reserve{book}', [\App\Http\Controllers\LoanController::class, 'reserve']);
+    Route::get('/user/reloan/{book}', [\App\Http\Controllers\LoanController::class, 'reloan']);
+});
+
+
+Route::middleware(['role', 'auth'])->group(function() {
+    Route::get('/books/', [BookController::class, 'index']);
+    Route::get('/books/add', function (){
+        return view('books.create');
+    });
+
+    Route::post('/books/add', [BookController::class, 'create']);
+    Route::post('/books/add/isbn', [BookController::class, 'quickCreate']);
+    Route::get('/books/update/{id}', [BookController::class, 'updateBook']);
+    Route::post('/books/update/{id}', [BookController::class, 'update']);
+
+    Route::get('/authors', [AuthorController::class, 'index']);
+    Route::get('/authors/{id}', [AuthorController::class, "updateAuthor"]);
+    Route::post('/authors/{id}', [AuthorController::class, 'update']);
+
+    Route::get('/stock/add/{id}', [StockController::class, 'createView']);
+    Route::post('/stock/add/{id}', [StockController::class, 'create']);
+    Route::get('/stock/', [StockController::class, 'index']);
+    Route::get('/stock/delete/{id}', [stockController::class, 'delete']);
+
+    Route::get('admin/home', [AdminController::class, 'index']);
+    Route::get('/admin/users/index', [AdminController::class, 'userIndex']);
+    Route::get('/admin/user/{id}', [UserController::class, 'userSelect']);
+    Route::post('/admin/user/{id}/', [UserController::class, 'userUpdate']);
+    Route::get('/admin/users/add', [UserController::class, 'userCreate']);
+    Route::post('/admin/users/add', [UserController::class, 'create']);
+});
+
+
+
+
+

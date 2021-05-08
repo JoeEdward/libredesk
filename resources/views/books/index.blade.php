@@ -15,6 +15,7 @@
         <div class="card-body">
             <p class="lead">Added at {{$book->created_at}}</p>
             <a href="/books/update/{{$book->id}}"><button class="btn btn-warning">Modify</button></a>
+            <a href="/stock/add/{{$book->id}}"><button class="btn btn-success">Add New Copy</button></a>
         </div>
     </div>
 

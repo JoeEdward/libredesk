@@ -17,8 +17,7 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (auth()->user()->role === 0) {
+        if (auth()->user()->role->name === 'Admin') {
             return $next($request);
         } else {
             return abort(403, 'Access not permitted for your account');

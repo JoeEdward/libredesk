@@ -18,7 +18,7 @@
 <div class="row" style="margin-top: 4%;">
     <div class="col-md-3 container sidebar-admin" style="overflow: scroll">
         <ul class="menu-list" style="margin-top: 3%">
-            <li>Menu</li>
+            <li><a href="/admin/home">Menu</a></li>
             <ul class="menu-list">
                 <li><a href="/books/add">Add New Book</a></li>
                 <li>Create Report</li>
@@ -53,8 +53,8 @@
             <hr class="menu-separator">
             <li>Stock</li>
             <ul class="menu-list">
-                <li>Stock checker</li>
-                <li>Modify stock</li>
+                <li><a href="/stock">Stock checker</a></li>
+                <li><a href="/books/">Modify stock</a></li>
             </ul>
         </ul>
         <br>

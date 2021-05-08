@@ -1,13 +1,13 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">LibreDesk</a>
+    <a class="navbar-brand" href="/home">LibreDesk</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="/home">Home</a>
         </li>
         @auth
 	        <li class="nav-item dropdown">
@@ -15,9 +15,8 @@
 	            {{auth()->user()->firstName}}
 	          </a>
 	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" href="#">Profile</a></li>
-	            <li><a class="dropdown-item" href="#">Loans</a></li>
-	            <li><a class="dropdown-item" href="#">History</a></li>
+	            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+	            <li><a class="dropdown-item" href="/loans">Loans</a></li>
               <li><a class="dropdown-item" href="/logout">Logout</a></li>
 	          </ul>
 	        </li>

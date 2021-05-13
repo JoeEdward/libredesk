@@ -133,4 +133,15 @@ class BookController extends Controller
     public function userSelect(Book $book) {
         return view('users.books.select')->with(["book" => $book]);
     }
+
+    public function search(Request $request) {
+        $searchTerm = $request->input('search');
+
+        $books = Book::query()
+            ->where('title', 'LIKE', "%{$searchTerm}")
+            ->orWhere('blurb', 'LIKE', "%{$searchTerm}")
+            ->get();
+
+        return view('books.bookSearch')->with(['books' => $books]);
+    }
 }

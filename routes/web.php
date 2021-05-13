@@ -32,13 +32,14 @@ Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');
 Route::middleware('auth')->group(function() {
     Route::get('/logout', [LoginController::class, 'destroy']);
     Route::get('/home', function () {
-
-        return view('users.homepage');
+        $books = App\Models\book::all();
+        return view('users.homepage')->with(['books' => $books]);
     })->name('home');
     Route::get('/user/book/{book}', [BookController::class, 'userSelect']);
     Route::get('/user/loan/{book}', [\App\Http\Controllers\LoanController::class, 'create']);
     Route::get('/user/reserve{book}', [\App\Http\Controllers\LoanController::class, 'reserve']);
     Route::get('/user/reloan/{book}', [\App\Http\Controllers\LoanController::class, 'reloan']);
+    Route::get('/search/', [BookController::class, 'search']);
 });
 
 

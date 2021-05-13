@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use function PHPUnit\Framework\isEmpty;
 
 class User extends Authenticatable
 {
@@ -67,11 +68,11 @@ class User extends Authenticatable
 
         foreach ($loans as $loan) {
             if ($loan->created_at < now()) {
-                $overdue =+ $loan;
+                $overdue = array_push($overdue, $loan);
             }
         }
 
-        if (count($overdue) > 0) {
+        if (!isEmpty($overdue)) {
             return $overdue;
         } else {
             return null;

@@ -11,13 +11,13 @@
 			<div class="rounded bg-light col-12 ml-1 mt-3">
 				<div class="row">
 					<div class=" container-fixed bg-primary rounded-circle text-center justify-content-center m-4" style="height: 5rem; width: 5rem;">
-						<p class="mt-2 lead" style="padding-top: 1.1rem">1</p>
+						<p class="mt-2 lead" style="padding-top: 1.1rem">{{ 0 }}</p>
 					</div>
 					<div class=" container-fixed rounded-circle m-auto text-center justify-content-center" style="height: 5rem; width: 5rem; background-color: #9fff80">
-						<p class="mt-2 lead" style="padding-top: 1.1rem">1</p>
+						<p class="mt-2 lead" style="padding-top: 1.1rem">{{ count(auth()->user()->loans) }}</p>
 					</div>
 					<div class=" container-fixed rounded-circle text-center justify-content-center m-4" style="height: 5rem; width: 5rem; background-color: #ff6666">
-						<p class="mt-2 lead" style="padding-top: 1.1rem">1</p>
+						<p class="mt-2 lead" style="padding-top: 1.1rem">{{ auth()->user()->overDue() == null ? 0 : count(auth()->user()->overdue()) }}</p>
 					</div>
 				</div>
 				<div class="row">
@@ -56,21 +56,26 @@
 		<div class="col-12 bg-light rounded mr-1 mt-3" style="height: 40rem">
 <!-- Book Search Box -->
 		<div class="container" style="padding-top: 1.1rem">
-			<form class="col-12">
+			<form class="col-12" action="/search/" method="get">
 				<div class="form-group row">
 					<label for="search" class="col-2" style="font-size: 18; padding-top: 0.2rem">Search:</label>
-					<input type="text" name="search" class="col-10 form-control">
+					<input type="text" name="search" class="col-10 form-control" required>
 				</div>
 			</form>
 		</div>
 		<div class="container" style="padding-top: 1.1rem">
-			
+
 			<h3 style="padding-left: .7rem">Recommended:</h3>
 
+            @foreach($books as $book)
 
-			@include('prefabs/recommendedCard')
-			@include('prefabs/recommendedCard')
-			@include('prefabs/recommendedCard')
+                @if($book->id <= 3)
+                    @include('prefabs/recommendedCard', ['book', $book])
+                @else
+
+                @endif
+
+            @endforeach
 
 		</div>
 

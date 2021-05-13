@@ -41,4 +41,12 @@ public function isAvailable() {
 
         return $out;
 }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function addTag(Tag $tag) {
+        return $this->tags()->save($tag);
+    }
 }

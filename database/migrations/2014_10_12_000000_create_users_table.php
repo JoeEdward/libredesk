@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('year');
             $table->boolean('enabled');
-            $table->integer('role');
+            $table->integer('role_id');
             $table->rememberToken();
             $table->timestamps();
         });

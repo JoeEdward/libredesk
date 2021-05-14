@@ -1,4 +1,4 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <head>
     <title>LibreDesk - @yield('title')</title>
 
@@ -15,7 +15,7 @@
 
 <body>
 @include('layouts.navbar')
-<div class="row" style="margin-top: 4%;">
+<div class="row" style="margin-top: 3%;">
     <div class="col-md-3 container sidebar-admin" style="overflow: scroll">
         <ul class="menu-list" style="margin-top: 3%">
             <li><a href="/admin/home">Menu</a></li>

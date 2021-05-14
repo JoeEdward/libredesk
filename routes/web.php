@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use \App\Http\Controllers\AuthorController;
 use \App\Http\Controllers\StockController;
+use \App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,12 @@ Route::middleware(['role', 'auth'])->group(function() {
     Route::post('/admin/user/{id}/', [UserController::class, 'userUpdate']);
     Route::get('/admin/users/add', [UserController::class, 'userCreate']);
     Route::post('/admin/users/add', [UserController::class, 'create']);
+
+    Route::get('/admin/tags/', [TagController::class, 'adminIndex']);
+    Route::post('/admin/tags/new', [TagController::class, 'add']);
+    Route::get('/admin/tag/{tag}', [TagController::class, 'select']);
+    Route::post('/admin/tags/update/{tag}', [TagController::class, 'update']);
+    Route::get('/admin/tags/delete/{tag}', [TagController::class, 'delete']);
 });
 
 

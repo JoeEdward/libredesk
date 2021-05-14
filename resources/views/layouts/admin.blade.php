@@ -17,7 +17,7 @@
 @include('layouts.navbar')
 <div class="row" style="margin-top: 3%;">
     <div class="col-md-3 container sidebar-admin" style="overflow: scroll">
-        <ul class="menu-list" style="margin-top: 3%">
+        <ul class="menu-list" style="margin-top: 2rem">
             <li><a href="/admin/home">Menu</a></li>
             <ul class="menu-list">
                 <li><a href="/books/add">Add New Book</a></li>
@@ -37,7 +37,7 @@
             <li>Content</li>
             <ul class="menu-list">
                 <li>Guides</li>
-                <li>Tags</li>
+                <li><a href="/admin/tags">Tags</a></li>
             </ul>
             <hr class="menu-separator">
             <li><a href="/authors">Authors</a></li>

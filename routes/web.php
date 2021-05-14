@@ -54,6 +54,7 @@ Route::middleware(['role', 'auth'])->group(function() {
     Route::post('/books/add/isbn', [BookController::class, 'quickCreate']);
     Route::get('/books/update/{id}', [BookController::class, 'updateBook']);
     Route::post('/books/update/{id}', [BookController::class, 'update']);
+    Route::get('/books/tag/remove/{book}/{tag}', [BookController::class, 'deleteTag']);
 
     Route::get('/authors', [AuthorController::class, 'index']);
     Route::get('/authors/{id}', [AuthorController::class, "updateAuthor"]);

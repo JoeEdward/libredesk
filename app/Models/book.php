@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class book extends Model
 {
@@ -48,5 +49,18 @@ public function isAvailable() {
 
     public function addTag(Tag $tag) {
         return $this->tags()->save($tag);
+    }
+
+    public function removeTag(Tag $tag) {
+        try {
+            DB::table('book_tag')
+                ->where('book_id', $this->id)
+                ->where('tag_id', $tag->id)
+                ->delete();
+        } catch (\Exception $e) {
+            return "Something went wrong in the database";
+        }
+
+        return null;
     }
 }

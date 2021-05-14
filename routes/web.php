@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/user/reserve{book}', [\App\Http\Controllers\LoanController::class, 'reserve']);
     Route::get('/user/reloan/{book}', [\App\Http\Controllers\LoanController::class, 'reloan']);
     Route::get('/search/', [BookController::class, 'search']);
+
+    // Tag
+    Route::get('/tags/{tag}', [TagController::class, 'list']);
 });
 
 

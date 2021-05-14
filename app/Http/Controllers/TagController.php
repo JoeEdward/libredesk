@@ -43,4 +43,8 @@ class TagController extends Controller
 
         return redirect('/admin/tags/');
     }
+
+    public function list(Tag $tag) {
+        return view('users.tags.select', ['tag' => $tag]);
+    }
 }

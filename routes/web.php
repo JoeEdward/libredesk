@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BookController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\UserController;
 use \App\Http\Controllers\AuthorController;
 use \App\Http\Controllers\StockController;
 use \App\Http\Controllers\TagController;
+use \App\Http\Controllers\MotdController;
 
 
 // Open Routes
@@ -27,7 +29,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout', [LoginController::class, 'destroy']);
     Route::get('/home', function () {
         $books = App\Models\book::all();
-        return view('users.homepage')->with(['books' => $books]);
+        $motd = DB::table('motds')->latest()->first();
+        return view('users.homepage')->with(['books' => $books, 'motd' => $motd]);
     })->name('home');
 
     // Books (User)
@@ -85,6 +88,11 @@ Route::middleware(['role', 'auth'])->group(function() {
     // TODO: Guides (Admin)
 
     // TODO: Reports
+
+    // MOTD
+    Route::get('/admin/motd', [MotdController::class, 'index']);
+    Route::post('/admin/motd', [MotdController::class, 'create']);
+    Route::get('/admin/motd/remove/{motd}', [MotdController::class, 'delete']);
 });
 
 

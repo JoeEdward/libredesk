@@ -23,7 +23,7 @@
                 <li><a href="/books/add">Add New Book</a></li>
                 <li>Create Report</li>
                 <li>Create New Guide</li>
-                <li>Create New Tag</li>
+                <li><a href="/admin/tags">Create New Tags</a></li>
                 <li><a href="/books/">Modify Books</a></li>
                 <li><a href="/authors">Modify Authors</a></li>
             </ul>
@@ -32,6 +32,7 @@
             <ul class="menu-list">
                 <li><a href="/admin/users/add">Add Users</a></li>
                 <li><a href="/admin/users/index">Modify Users</a></li>
+                <li><a href="/admin/motd">MOTD</a></li>
             </ul>
             <hr class="menu-separator">
             <li>Content</li>
@@ -51,7 +52,7 @@
                 <li><a href="/books/">Modify Books</a></li>
             </ul>
             <hr class="menu-separator">
-            <li>Stock</li>
+            <li><a class="/stock">Stock</a></li>
             <ul class="menu-list">
                 <li><a href="/stock">Stock checker</a></li>
                 <li><a href="/books/">Modify stock</a></li>

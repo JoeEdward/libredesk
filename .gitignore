@@ -28,3 +28,4 @@ app/.DS_Store
 app/Http/.DS_Store
 database/.DS_Store
 resources/.DS_Store
+*.icloud

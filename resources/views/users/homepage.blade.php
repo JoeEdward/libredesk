@@ -35,18 +35,26 @@
 		</div>
 		<div class="row m-auto">
 <!-- Bottom Left Box -->
-			<div class="rounded bg-light col-12 ml-1 mt-3" style="height: 29rem;">
-				<div class="row">
-					<div class="col-6">
-						<img style="padding: 1.1rem" src="https://via.placeholder.com/250x420">
-					</div>
-					<div class="col-6" style="padding: 1.1rem">
-						<h2 style="text-align: center">MOTD Title:</h2>
-						<br>
-						<p style="text-align: center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam accumsan consectetur erat nec accumsan. Phasellus quis pretium purus, ut commodo.</p>
-					</div>
-				</div>
-			</div>
+            @isset($motd)
+                <div class="rounded bg-light col-12 ml-1 mt-3" style="height: 29rem; overflow: hidden">
+                    <div class="row">
+                        <div class="col-6">
+                            <img style="padding: 1.1rem; width: 100%; height: auto" src="{{url($motd->img)}}">
+                        </div>
+                        <div class="col-6" style="padding: 1.1rem">
+                            <h2 style="text-align: center">{{$motd->title}}</h2>
+                            <br>
+                            <p style="text-align: center; overflow: scroll; height:20rem">{{$motd->description}}</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            @else
+                <div class="alert alert-primary">
+                    <h3>Currently No MOTD Set</h3>
+                </div>
+            @endisset
 
 		</div>
 

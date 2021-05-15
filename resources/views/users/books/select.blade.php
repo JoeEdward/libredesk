@@ -7,13 +7,18 @@
         <div class="card-header">
             <h1>{{$book->title}}</h1>
             <p class="lead">{{$book->author->Last_name}}, {{$book->author->first_name}}</p>
+            <p class="lead">
+                @foreach($book->tags as $tag)
+                    <a href="/tags/{{$tag->id}}"><span style="color: {{$tag->color}}">{{$tag->name}},</span></a>
+                @endforeach
+            </p>
         </div>
         <div class="card-body">
             <div class="row">
             <div class="col-4 offset-1">
                 <img src="{{$book->img}}" style="width: 100%; height: auto;">
             </div>
-            <div class="col-4 offset-1">
+            <div class="col-6 offset-1">
                 <h3 class="display-4">Description</h3>
                 <hr>
                 <p class="body">{{$book->blurb}}</p>

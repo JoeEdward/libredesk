@@ -29,6 +29,20 @@
                 <label>ISBN:</label>
                 <input disabled class="form-control" value="{{$book->ISBN}}">
                 <br>
+                <label>Tags:</label><br>
+                <small>Click to delete</small>
+                <p>
+                @foreach($book->tags as $tag)
+                        <a href="/books/tag/remove/{{$book->id}}/{{$tag->id}}"><span style="color: {{$tag->color}}">{{$tag->name}}</span></a>
+                @endforeach
+                </p>
+                <select class="form-control select" multiple name="tags[]">
+                    @foreach($tags as $tag)
+
+                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+
+                    @endforeach
+                </select>
                 {{csrf_field()}}
 
                 <button class="btn btn-warning">Update</button>

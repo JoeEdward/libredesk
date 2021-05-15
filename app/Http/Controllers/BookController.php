@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\book as Book;
 use App\Models\Author;
@@ -114,8 +115,9 @@ class BookController extends Controller
 
     public function updateBook($id) {
         $book = Book::find($id);
+        $tags = Tag::all();
 
-        return view('books.update')->with(['book' => $book]);
+        return view('books.update')->with(['book' => $book, 'tags' => $tags]);
     }
 
     public function update($id, Request $request) {
@@ -124,6 +126,22 @@ class BookController extends Controller
         $book->title = $request->title;
         $book->blurb = $request->blurb;
         $book->img = $request->img;
+
+        if(!empty($request->input('tags'))) {
+            foreach ($request->tags as $tag) {
+                $found = false;
+                foreach($book->tags as $atag) {
+                    $tagC = Tag::find($tag);
+                    if ($atag->name === $tagC->name) {
+                        $found = true;
+                    }
+                }
+                if (!$found) {
+                    $book->addTag(Tag::find($tag));
+                }
+            }
+        }
+
 
         $book->save();
 
@@ -143,5 +161,15 @@ class BookController extends Controller
             ->get();
 
         return view('books.bookSearch')->with(['books' => $books]);
+    }
+
+    public function deleteTag(Book $book, Tag $tag) {
+        $output = $book->removeTag($tag);
+        $errors = [];
+        if ($output !== null) {
+            $errors = array_push($errors, $output);
+        }
+
+        return back()->withErrors($errors);
     }
 }

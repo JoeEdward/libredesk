@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuideController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -32,6 +33,12 @@ Route::middleware('auth')->group(function() {
         $motd = DB::table('motds')->latest()->first();
         return view('users.homepage')->with(['books' => $books, 'motd' => $motd]);
     })->name('home');
+
+    // TODO: Profile
+
+    // TODO: User Loans
+
+    //TODO: User Guides
 
     // Books (User)
     Route::get('/user/book/{book}', [BookController::class, 'userSelect']);
@@ -86,6 +93,10 @@ Route::middleware(['role', 'auth'])->group(function() {
     Route::get('/admin/tags/delete/{tag}', [TagController::class, 'delete']);
 
     // TODO: Guides (Admin)
+    Route::get('/admin/guides', [GuideController::class, 'index']);
+    Route::get('/admin/guides/{guide}', [GuideController::class, 'select']);
+    Route::post('/admin/guides', [GuideController::class, 'create']);
+    Route::get('/admin/guides/{guide}/delete', [GuideController::class, 'delete']);
 
     // TODO: Reports
 

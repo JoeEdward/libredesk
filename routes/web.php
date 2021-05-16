@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function() {
     // TODO: User Loans
 
     //TODO: User Guides
+    Route::get('/guides', [GuideController::class, 'userIndex']);
 
     // Books (User)
     Route::get('/user/book/{book}', [BookController::class, 'userSelect']);

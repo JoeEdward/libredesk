@@ -42,4 +42,10 @@ class GuideController extends Controller
 
         return redirect('/admin/guides');
     }
+
+    public function userIndex() {
+        $guides = Guide::all();
+
+        return view('users.guides.index')->with(['guides' => $guides]);
+    }
 }

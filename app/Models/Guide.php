@@ -17,7 +17,8 @@ class Guide extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function books() {
+    public function books(): array
+    {
         $books = [];
         $tags = $this->tags;
 

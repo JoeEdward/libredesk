@@ -25,6 +25,16 @@
               <li><a class="dropdown-item" href="/logout">Logout</a></li>
 	          </ul>
 	        </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Library
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/home">Home</a></li>
+                        <li><a class="dropdown-item" href="/guides">Guides</a></li>
+                        <li><a class="dropdown-item" href="/tags">Tags</a></li>
+                    </ul>
+                </li>
         @endauth
         @guest
         	<li class="nav-item">

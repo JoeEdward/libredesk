@@ -46,7 +46,7 @@ class BookController extends Controller
         $book = Book::firstOrCreate([
             'title' => $request->title,
         ],[
-            'author' => $author->id,
+            'author_id' => $author->id,
             'blurb' => $request->blurb,
             'img' => $request->img
         ]);
@@ -95,7 +95,7 @@ class BookController extends Controller
         $book = new Book();
 
         $book->title = $data['title'];
-        $book->author = $author->id;
+        $book->author_id = $author->id;
 
         if(isset($data['description'])){
             $book->blurb = $data['description'];

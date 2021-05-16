@@ -21,8 +21,7 @@
             <li><a href="/admin/home">Menu</a></li>
             <ul class="menu-list">
                 <li><a href="/books/add">Add New Book</a></li>
-                <li>Create Report</li>
-                <li>Create New Guide</li>
+                <li><a href="/admin/guides">Create New Guide</a></li>
                 <li><a href="/admin/tags">Create New Tags</a></li>
                 <li><a href="/books/">Modify Books</a></li>
                 <li><a href="/authors">Modify Authors</a></li>
@@ -35,9 +34,9 @@
                 <li><a href="/admin/motd">MOTD</a></li>
             </ul>
             <hr class="menu-separator">
-            <li>Content</li>
+            <li><a href="/admin/guides">Content</a></li>
             <ul class="menu-list">
-                <li>Guides</li>
+                <li><a href="/admin/guides">Guides</a></li>
                 <li><a href="/admin/tags">Tags</a></li>
             </ul>
             <hr class="menu-separator">

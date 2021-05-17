@@ -15,7 +15,7 @@
 
 <body>
 	@include('layouts.navbar')
-<div class="row" style="margin-top: 5%;">
+<div class="row" style="margin-top: 2rem;">
 	<div class="conatiner col-md-12">
 
 		@yield('content')

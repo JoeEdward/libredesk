@@ -60,4 +60,12 @@ class UserController extends Controller
 
         return back()->withErrors($errors);
     }
+
+    public function me() {
+        return view('users.self');
+    }
+
+    public function show() {
+        return view('users.loans.profile');
+    }
 }

@@ -33,12 +33,14 @@ Route::middleware('auth')->group(function() {
         $motd = DB::table('motds')->latest()->first();
         return view('users.homepage')->with(['books' => $books, 'motd' => $motd]);
     })->name('home');
+    Route::get('/loans', [UserController::class, 'show']);
 
     // TODO: Profile
+    Route::get('/profile', [UserController::class, 'me']);
 
     // TODO: User Loans
 
-    //TODO: User Guides
+    // User Guides
     Route::get('/guides', [GuideController::class, 'userIndex']);
 
     // Books (User)

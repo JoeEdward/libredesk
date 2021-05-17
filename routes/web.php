@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function() {
 
     // Tag
     Route::get('/tags/{tag}', [TagController::class, 'list']);
+    Route::get('/tags', [TagController::class, 'userIndex']);
 });
 
 

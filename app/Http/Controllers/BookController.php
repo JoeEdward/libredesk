@@ -9,12 +9,7 @@ use App\Models\Author;
 
 class BookController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('role');
-    }
+    
 
     public function index()
     {

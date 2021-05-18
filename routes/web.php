@@ -11,6 +11,7 @@ use \App\Http\Controllers\AuthorController;
 use \App\Http\Controllers\StockController;
 use \App\Http\Controllers\TagController;
 use \App\Http\Controllers\MotdController;
+use App\Http\Controllers\LoanController;
 
 
 // Open Routes
@@ -21,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');
-
+Route::get('/api/read/{notification_id}', [\App\Http\Controllers\UserController::class, 'readNotif']);
 
 
 Route::middleware('auth')->group(function() {
@@ -34,11 +35,17 @@ Route::middleware('auth')->group(function() {
         return view('users.homepage')->with(['books' => $books, 'motd' => $motd]);
     })->name('home');
 
-    // TODO: Profile
 
-    // TODO: User Loans
+    //Profile
+    Route::get('/profile', [UserController::class, 'me']);
 
-    //TODO: User Guides
+    // User Loans
+    Route::get('/loans', [UserController::class, 'show']);
+    Route::get('/overdue', [UserController::class, 'overdue']);
+    Route::get('/notifications', [UserController::class, 'notifIndex']);
+
+
+    // User Guides
     Route::get('/guides', [GuideController::class, 'userIndex']);
 
     // Books (User)
@@ -50,6 +57,7 @@ Route::middleware('auth')->group(function() {
 
     // Tag
     Route::get('/tags/{tag}', [TagController::class, 'list']);
+    Route::get('/tags', [TagController::class, 'userIndex']);
 });
 
 
@@ -93,13 +101,14 @@ Route::middleware(['role', 'auth'])->group(function() {
     Route::post('/admin/tags/update/{tag}', [TagController::class, 'update']);
     Route::get('/admin/tags/delete/{tag}', [TagController::class, 'delete']);
 
-    // TODO: Guides (Admin)
+    // Guides (Admin)
     Route::get('/admin/guides', [GuideController::class, 'index']);
     Route::get('/admin/guides/{guide}', [GuideController::class, 'select']);
     Route::post('/admin/guides', [GuideController::class, 'create']);
     Route::get('/admin/guides/{guide}/delete', [GuideController::class, 'delete']);
 
-    // TODO: Reports
+    Route::get('/admin/desk', [AdminController::class, 'desk']);
+    Route::post('/admin/desk', [LoanController::class , 'delete']);
 
     // MOTD
     Route::get('/admin/motd', [MotdController::class, 'index']);

@@ -44,6 +44,12 @@ class TagController extends Controller
         return redirect('/admin/tags/');
     }
 
+    public function userIndex() {
+        $tags = Tag::all();
+
+        return view('users.tags.index')->with(['tags' => $tags]);
+    }
+
     public function list(Tag $tag) {
         return view('users.tags.select', ['tag' => $tag]);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -59,5 +60,32 @@ class UserController extends Controller
         $errors = ['User created with password changeMe'];
 
         return back()->withErrors($errors);
+    }
+
+    public function me() {
+        return view('users.self');
+    }
+
+    public function show() {
+        return view('users.loans.profile');
+    }
+
+    public function overdue() {
+        $overdue = auth()->user()->overDue();
+        return view('users.loans.overdue')->with(['overdue' => $overdue]);
+    }
+
+    public function readNotif($notification_id) {
+        foreach (auth()->user()->unreadNotifications as $notification) {
+            if ($notification->id == $notification_id) {
+                $notification->markAsRead();
+            }
+        }
+        return '200: OK';
+
+    }
+
+    public function notifIndex() {
+        return view('users.loans.notificationsIndex');
     }
 }

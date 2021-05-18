@@ -1842,6 +1842,10 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$('#notifRead').click(function () {
+  console.log($('#notifRead').value());
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

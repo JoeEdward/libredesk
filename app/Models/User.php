@@ -46,6 +46,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function enabledToString() {
         if ($this->enabled == 1) {
             return "True";
@@ -67,12 +68,12 @@ class User extends Authenticatable
         $overdue = [];
 
         foreach ($loans as $loan) {
-            if ($loan->created_at < now()) {
-                $overdue = array_push($overdue, $loan);
+            if ($loan->dueDate() < now()) {
+                array_push($overdue, $loan);
             }
         }
 
-        if (!isEmpty($overdue)) {
+        if (isEmpty($overdue) !== false) {
             return $overdue;
         } else {
             return null;

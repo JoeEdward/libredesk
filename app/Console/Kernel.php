@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Models\loan;
+use App\Notifications\BookOverdue;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,6 +27,17 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        $schedule->call(function() {
+            $loans = loan::all();
+
+            foreach ($loans as $loan) {
+                if ($loan->dueDate() < now()) {
+                    $loan->user->notify(new BookOverdue($loan));
+                }
+            }
+        })->everyMinute()->name('Email Overdue (Test)');
+        //})->mondays()->at('9:00')->name('Email Overdue');
     }
 
     /**

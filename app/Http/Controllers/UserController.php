@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -38,6 +39,42 @@ class UserController extends Controller
      return view('users.createAdmin');
     }
 
+    public function register(Request $request) {
+        $errors = [];
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|confirmed',
+            'instance' => 'required'
+        ]);
+
+        if ($request->instance == config('app.instance')) {
+            $password = Hash::make($request->password);
+
+            $user = User::create([
+                'firstName' => $request->firstname,
+                'lastName' => $request->lastname,
+                'email' => $request->email,
+                'password' => $password,
+                'role_id' => 2,
+                'enabled' => 1,
+            ]);
+
+            auth()->login($user);
+
+            return redirect('home');
+        } else {
+            array_push($errors, 'Instance_ID not valid for this application');
+        }
+
+        if (isset($errors)) {
+            return back()->withErrors($errors);
+        } else {
+            return back()->withErrors(['Something else has gone wrong']);
+        }
+    }
+
     public function create(Request $request) {
 
         $errors = $request->validate([
@@ -45,7 +82,6 @@ class UserController extends Controller
                 'email' => 'required|email:rfc,dns|max:255',
             ])
         ]);
-
 
         $user = User::create([
             'firstName' => $request->firstname,

@@ -1,5 +1,6 @@
 <?php
 
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\GuideController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,10 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');
 Route::get('/api/read/{notification_id}', [\App\Http\Controllers\UserController::class, 'readNotif']);
-
+Route::get('/register', function() {
+    return view('users.create');
+});
+Route::post('/register', [UserController::class, 'register']);
 
 Route::middleware('auth')->group(function() {
 

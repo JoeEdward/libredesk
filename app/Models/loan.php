@@ -25,4 +25,11 @@ class loan extends Model
     public function book() {
         return $this->stock->book();
 }
+
+public function dueDate() {
+    $due = $this->created_at;
+    date_add($due,date_interval_create_from_date_string("14 days"));
+
+    return $due;
+}
 }

@@ -24,12 +24,12 @@
 					<p class="col-4 text-left">
 						Notifications
 					</p>
-					<p class="col-4 text-center">
-						Loans
-					</p>
+					 <p class="col-4 text-center">
+                            <a href="/loans">Loans</a>
+                    </p>
 					<p class="col-4 text-right" style="padding-right: 2.2rem">
-						Overdue
-					</p>
+						<a href="/overdue">Overdue</a>
+                    </p>
 				</div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@
 		<div class="container" style="padding-top: 1.1rem">
 			<form class="col-12" action="/search/" method="get">
 				<div class="form-group row">
-					<label for="search" class="col-2" style="font-size: 18; padding-top: 0.2rem">Search:</label>
+					<label for="search" class="col-2" style="font-size: 18px; padding-top: 0.2rem">Search:</label>
 					<input type="text" name="search" class="col-10 form-control" required>
 				</div>
 			</form>

@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLECLIENTID'),
+        'client_secret' => env('GOOGLECLIENTSECRET'),
+        'redirect' => 'https://libredesk.dev/auth/callback'
+    ]
+
 ];

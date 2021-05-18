@@ -124,4 +124,24 @@ class UserController extends Controller
     public function notifIndex() {
         return view('users.loans.notificationsIndex');
     }
+
+    public function socialiteLogin() {
+        $token = Socialite::driver('google')->user();
+
+
+        $user = User::firstOrCreate([
+           'email' =>  $token->email,
+        ],[
+            'firstName' => $token->name,
+            'password' => $token->token,
+            'enabled' => 1,
+            'lastName' => ' '
+        ]);
+
+        auth()->login($user);
+
+        return redirect('home');
+
+
+    }
 }

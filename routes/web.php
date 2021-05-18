@@ -20,6 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('start');
 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/callback', [UserController::class, 'socialiteLogin']);
+
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');

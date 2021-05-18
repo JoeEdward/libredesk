@@ -18,7 +18,7 @@
 				</ul>
 			</div>
 			@endif
-			
+			<a href="/auth/redirect"><button class="btn btn-primary">Sign in with Google</button></a><hr>
 			<form action="/login" method="POST">
 				<div class="form-group">
 					<label for="email" class="form-label">Email</label>

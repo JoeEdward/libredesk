@@ -1,19 +1,19 @@
-<p style="font-size: 32px; text-align: center">Libredesk</p>
+# Libredesk
 
-# What is Libredesk
+## What is Libredesk
 
 
 Libredesk is a final year project developed by Joe Edwards for his 3rd year at DMU
 this readme is designed to help with configuration and set up of this application
 
-# Prerequsites
+## Prerequsites
 
 * A Mac Or linux machine
 * A windows machine with a web server and PHP intergration ( Not recommended )
 * PHP installed and accessible in your path
 * A local web server (Nginx recommended)
 
-# Installing Libredesk
+## Installing Libredesk
 
 1. First clone this project into a folder and point your webserver at the public directory
 1. Rename env.example to .env and fill in your database connection details and google connection details as required in the file

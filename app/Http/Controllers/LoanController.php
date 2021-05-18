@@ -49,4 +49,18 @@ class LoanController extends Controller
     public function reserve(book $book) {
 
     }
+
+    public function delete(Request $request) {
+        $stock = stock::find($request->input('id'));
+        $loan = $stock->loan;
+        $errors = [];
+
+        if (isset($loan) !== false) {
+            $loan->delete();
+        } else {
+            array_push($errors, 'No loan for that book');
+        }
+
+        return back()->withErrors($errors);
+    }
 }

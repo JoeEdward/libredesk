@@ -17,4 +17,8 @@ class AdminController extends Controller
         return view('users.admin.userIndex')->with(['users' => $users]);
 }
 
+    public function desk() {
+        return view('users.admin.desk');
+    }
+
 }

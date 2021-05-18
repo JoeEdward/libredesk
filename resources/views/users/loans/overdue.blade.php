@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="col-10 offset-1" style="margin-top: 2rem;">
-    @isset($overdue)
+    @isset($overdue[0])
         <table class="table table-danger text-center">
             <thead>
             <th scope="col">No</th>
@@ -31,6 +31,6 @@
         <div class="alert alert-success">
             <h3>No overdue loans! Congratulations!</h3>
         </div>
-    @endisset
+    @endempty
     </div>
 @endsection

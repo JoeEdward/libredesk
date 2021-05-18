@@ -31,12 +31,13 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             $loans = loan::all();
 
-            foreach($loans as $loan) {
+            foreach ($loans as $loan) {
                 if ($loan->dueDate() < now()) {
                     $loan->user->notify(new BookOverdue($loan));
                 }
             }
-        })->mondays()->at('9:00')->name('Email Overdue');
+        })->everyMinute()->name('Email Overdue (Test)');
+        //})->mondays()->at('9:00')->name('Email Overdue');
     }
 
     /**

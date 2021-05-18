@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'create'])->name('LoginPost');
-
+Route::get('/api/read/{notification_id}', [\App\Http\Controllers\UserController::class, 'readNotif']);
 
 
 Route::middleware('auth')->group(function() {
@@ -33,12 +33,16 @@ Route::middleware('auth')->group(function() {
         $motd = DB::table('motds')->latest()->first();
         return view('users.homepage')->with(['books' => $books, 'motd' => $motd]);
     })->name('home');
-    Route::get('/loans', [UserController::class, 'show']);
+
 
     // TODO: Profile
     Route::get('/profile', [UserController::class, 'me']);
 
     // TODO: User Loans
+    Route::get('/loans', [UserController::class, 'show']);
+    Route::get('/overdue', [UserController::class, 'overdue']);
+    Route::get('/notifications', [UserController::class, 'notifIndex']);
+
 
     // User Guides
     Route::get('/guides', [GuideController::class, 'userIndex']);

@@ -68,12 +68,12 @@ class User extends Authenticatable
         $overdue = [];
 
         foreach ($loans as $loan) {
-            if ($loan->created_at < now()) {
-                $overdue = array_push($overdue, $loan);
+            if ($loan->dueDate() < now()) {
+                array_push($overdue, $loan);
             }
         }
 
-        if (!isEmpty($overdue)) {
+        if (isEmpty($overdue) !== false) {
             return $overdue;
         } else {
             return null;
